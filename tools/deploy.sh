@@ -3,12 +3,11 @@ BUNDLE_CONFIG="./bundle-config/bundle.config.json"
 sim=0
 dir=""
 dev=0
-ipaddr="192.168.181.149"
-ipaddr_dev="192.168.181.150"
+ipaddr=""
 usage()
 {
-    echo "usage: deploy [[-s --simulator-only] [-o --output-dir] [-l --list list]  [-h --help]]"
-    echo "example: deploy -i 192.168.1.43"
+    echo "usage: ./tools/deploy.sh [[-s --simulator-only] [-o --output-dir] [-i --ip-addr]  [-h --help]]"
+    echo "example: ./tools/deploy.sh -i 192.168.1.43"
 }
 
 
@@ -23,7 +22,7 @@ fi
 
   while [ "$1" != "" ]; do
       case $1 in
-          -i | --ip )             shift
+          -i | --ip-addr )             shift
                                   ipaddr=$1
                                   ;;
           -s | --simulator-only ) sim=1
@@ -41,11 +40,20 @@ fi
 # bundle all configs
 npm run dist
 
-SCRIPT_BASE=./dist
-SCRIPT_FILES=$SCRIPT_BASE/*.script
-SCRIPT_FILE=$SCRIPT_BASE/scripts.script
+SCRIPT_BASE=./dist/default
+SCRIPT_FILE=$SCRIPT_BASE/beaconRecipes.script
+
+
 
 if [ $sim = 0 ]; then
+  if [ -z $ipaddr ]; then
+    echo "************************************************************************************"
+    echo "ERROR: Please use the -i flag to enter a valid IP Address for the robot. See example usage:"
+    echo ""
+    usage
+    echo "************************************************************************************"
+    exit 1
+  fi
   echo "Directory: " $dir
   if [ ! -z $dir ]; then
     echo "************************************************************************************"
