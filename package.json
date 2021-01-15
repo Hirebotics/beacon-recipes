@@ -1,0 +1,23 @@
+{
+  "name": "beacon-recipes",
+  "version": "1.0.0",
+  "description": "Beacon custom event recipes",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hirebotics/beacon-recipes.git"
+  },
+  "keywords": [
+    "urscript"
+  ],
+  "author": "Hirebotics",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hirebotics/beacon-recipes/issues"
+  },
+  "homepage": "https://github.com/Hirebotics/beacon-recipes#readme"
+}
