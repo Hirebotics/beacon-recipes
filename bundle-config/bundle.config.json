@@ -1,0 +1,18 @@
+{
+  "sources": {
+    "global": {
+      "scripts": {
+        "include": ["src/*.script"],
+        "exclude": []
+      }
+    }
+  },
+  "options": {
+    "bundleKey": "default",
+    "bundleOutputFile": "beaconRecipes",
+    "scriptSuffix": "script",
+    "outputDir": "dist",
+    "writeToDisk": true,
+    "stripComments": true
+  }
+}
