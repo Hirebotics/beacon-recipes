@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Hirebotics/beacon-recipes/issues"
   },
-  "homepage": "https://github.com/Hirebotics/beacon-recipes#readme"
+  "homepage": "https://github.com/Hirebotics/beacon-recipes#readme",
+  "dependencies": {
+    "@hirebotics/urscript-tools": "^1.6.0"
+  }
 }
