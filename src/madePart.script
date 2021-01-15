@@ -1,0 +1,7 @@
+def beacon_partMade(quantityMade, cycleTime = 0, msg = ""):
+  local cycleTimeLabel = ""
+  if (cycleTime > 0):
+    cycleTimeLabel = "Cycle Time"
+  end
+  beacon.publishEvent("Made a Part", msg, "Quantity Made", qty, cycleTimeLabel, cycleTime)
+end
