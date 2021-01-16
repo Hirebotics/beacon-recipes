@@ -8,6 +8,7 @@
 - [Overview](#overview)
 - [Quick Start](#quick-start)
 - [Documentation](#documentation)
+    - [Made a Part](#made-a-part)
 
 ## Overview
 
@@ -47,6 +48,16 @@ or you can run the tool directly from the command terminal which gives you more 
 ./tools/deploy -i 192.168.1.1
 ```
 
-If you want to simply build the files to be used on the simulator or to load onto the robot using a USB stick you can run the deploy command with the `-s` or `--simulator-only` flag option. Using this you can also specify an output directory on your computer if you want the files stored somewhere other than in the repository folder. 
+If you want to simply build the files to be used on the simulator or to load onto the robot using a USB stick you can run the deploy command with the `-s` or `--simulator-only` flag option. Using this you can also specify an output directory on your computer if you want the files stored somewhere other than in the repository folder using the `-o` or `--output-dir` flag.
 
 ## Documentation
+
+### Made a Part
+  This is a good recipe to use when you want to track part production over the course of the day.  This script has optional parameters for sending in the `Part Number`, `Cycle Time` and a custom message that you want tagged in the event.  If you do not provide those values the `Part Number` will be set to an empty string and the `Cycle Time` will be set to a value of 0.
+
+  Example Usage:
+  ```
+  beacon_partMade(1, 12.34, "PRT-00123", "Made part from machine 1234")
+  ```
+
+![img](./docs/images/partMadePolyscope.png)
