@@ -1,0 +1,16 @@
+
+thread notifyWhenOutputHigh():
+  while (True):
+    if (get_standard_digital_out(0)): #This could be any of the standard, configurable or tool outputs or inputs, just need to use correct function and port
+      beacon.publishEvent("Output Went High", "Digital Output 0 went high", "Output Triggered", 1)
+      while (get_standard_digital_out(0)):
+        sync()
+      end
+    end
+    sync()
+  end
+end
+
+def beacon_monitorOutput():
+  run notifyWhenOutputHigh()
+end

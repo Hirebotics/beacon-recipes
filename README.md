@@ -59,6 +59,21 @@ beacon_stoppage("Out of parts, please load more then press continue", "Parts hav
 
 ![img](./docs/images/workStoppagePolyscope.png)
 
+### Notify When Output Goes High
+
+This is a demo recipe that shows the power of notifications.  In this example the robot is monitoring a standard digital output on the robot and sending an event notification when the output goes high (turns on.  If a user is subscribed to this event than it is possible to get a push notification on a mobile device when this condition occurs.
+
+#### Example Usage
+```
+beacon_monitorOutput()
+```
+
+![img](./docs/images/monitorOutput.png)
+
+#### Example of Notifications
+
+![img](./docs/images/notifications.png)
+
 ## Charting in Beacon
 
 ![img](./docs/images/BeaconMetrics.png)
