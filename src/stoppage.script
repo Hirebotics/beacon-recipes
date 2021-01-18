@@ -10,6 +10,7 @@ def beacon_stoppage(msg_start, msg_end = "Stoppage resolved, thank you for your 
 end
 
 thread stoppage_thrd():
+  stoppage_timer = 0
   while (True):
     stoppage_timer = stoppage_timer + step_time
     sync()
