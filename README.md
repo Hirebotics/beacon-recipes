@@ -50,10 +50,6 @@ Click [here](./docs/advancedRepoFunctionality.md) to learn more about the advanc
 
 ![img](./docs/images/partMadePolyscope.png)
 
-#### Example of Charting Results
-
-![img](./docs/images/partMadeMetrics.png)
-
 
 ### Production Stoppage
 
@@ -64,6 +60,8 @@ This is a recipe to use when you want to monitor work stoppages.  It will send a
 beacon_stoppage("Out of parts, please load more then press continue", "Parts have been reloaded")
 ```
 
-#### Example Polyscope Program
+![img](./docs/images/workStoppagePolyscope.png)
 
-![img](./docs/images/stoppagePolyscope.png)
+## Charting in Beacon
+
+![img](./docs/images/BeaconMetrics.png)
