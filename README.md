@@ -13,13 +13,13 @@
 
 ## Overview
 
-[Beacon](https://www.hirebotics.com/beacon) is a powerful platform for monitoring your Universal Robot cobot.  With the new custom event API you can now send up meaningful messages and metrics directly from the robot to your Beacon instance.
+[Beacon](https://bit.ly/35TuHQ4) is a powerful platform for monitoring your Universal Robot cobot.  With the new custom event API you can now send up meaningful messages and metrics directly from the robot to your Beacon instance.
 
 
 <div class="hs-cta-wrapper" id="hs-cta-wrapper-dd01f58d-3d2d-429d-9d15-f803b3e74f09" align="center" >
   <span class="hs-cta-node hs-cta-dd01f58d-3d2d-429d-9d15-f803b3e74f09" id="hs-cta-dd01f58d-3d2d-429d-9d15-f803b3e74f09">
      <!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]-->
-     <a href="https://hirebotics.com/beacon-sign-up"  target="_blank" >
+     <a href="https://bit.ly/3qwRJEv"  target="_blank" >
         <img class="hs-cta-img" id="hs-cta-img-dd01f58d-3d2d-429d-9d15-f803b3e74f09" style="border-width:0px;" src="https://no-cache.hubspot.com/cta/default/5050021/dd01f58d-3d2d-429d-9d15-f803b3e74f09.png"  alt="Get Beacon"/>
      </a>
    </span>
