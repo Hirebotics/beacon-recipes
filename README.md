@@ -31,11 +31,14 @@ Beacon Recipes aims to make creating custom events easier by providing preconfig
 
 The easiest way to get started using the code recipes is to simply use the recipes as guides to creating your own functions or programs on the UR Robot using Polyscope.  Another easy way to get started is to copy and paste the code from the source code into a text editor and then save that file on a USB and load it into the robot using that method.
 
-## Advanced Functionality
-
-Click [here](./docs/advancedRepoFunctionality.md) to learn more about the advanced functionality available in this repositrory. 
+Thefe are links in the examples below that will open the file in your web browser. To save the file you simply right click on the screen and choose `Save Page As` and that will allow you to directly save the content of the recipe to your computer or USB drive.  
 
 ## Documentation
+
+
+## Using the URCap to Publish Events
+
+## Recipe Examples
 
 ### Made a Part
   This is a good recipe to use when you want to track part production over the course of the day.  This script has optional parameters for sending in the `Part Number`, `Cycle Time` and a custom message that you want tagged in the event.  If you do not provide those values the `Part Number` will be set to an empty string and the `Cycle Time` will be set to a value of 0.
@@ -51,6 +54,39 @@ Click [here](./docs/advancedRepoFunctionality.md) to learn more about the advanc
 ### Production Stoppage
 
 This is a recipe to use when you want to monitor work stoppages.  It will send a notification and also pop onto the screen the information for the operator on what needs to be addressed.  It also takes an optional second message that will be displayed once the operator acknowledges the situation.  The function automatically logs the amount of time it takes from when the stoppage occurs until the operator acknowledges the situation.
+
+[Download](https://raw.githubusercontent.com/redwoodjs/learn.redwoodjs.com/master/docs/tutorial/a-second-page-and-a-link.md)
+
+#### Documentation
+
+
+| Parameter | Type | Required | Description |
+| --- | --- | ---| --- |
+| msg_start | String|  Required | This is the message that you want displayed in the popup when the stoppage occurs, will also be sent in the event |
+| msg_end | String | Optional | This message will be sent in the event when the stoppage is resolved, if not provided the default message will be sent |
+
+```
+
+local stoppage_timer = 0
+local step_time = get_steptime()
+
+def beacon_stoppage(msg_start, msg_end = "Stoppage resolved, thank you for your help"):
+  local threadId = run stoppage_thrd()
+  beacon.publishEvent("Stoppage", msg_start)
+  popup(msg_start, "Work Stoppage", True, False, True)
+  kill threadId
+  beacon.publishEvent("Stoppage", msg_end, "Time Stopped", stoppage_timer)
+end
+
+thread stoppage_thrd():
+  stoppage_timer = 0
+  while (True):
+    stoppage_timer = stoppage_timer + step_time
+    sync()
+  end
+end
+```
+
 
 #### Example Usage
 ```
@@ -77,3 +113,7 @@ beacon_monitorOutput()
 ## Charting in Beacon
 
 ![img](./docs/images/BeaconMetrics.png)
+
+## Advanced Repo Functionality
+
+Click [here](./docs/advancedRepoFunctionality.md) to learn more about the advanced functionality available in this repositrory. 
