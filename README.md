@@ -13,6 +13,7 @@
     - [Production Stoppage](#production-stoppage)
     - [Notify When Output Triggered](#notify-when-output-triggered)
 - [Charting in Beacon](#charting-in-beacon)
+- [Advanced Repo Functionality](#advanced-repo-functionality)
 
 ## Overview
 
