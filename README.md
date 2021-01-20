@@ -29,20 +29,65 @@ Beacon Recipes aims to make creating custom events easier by providing preconfig
 
 ## Quick Start
 
-The easiest way to get started using the code recipes is to simply use the recipes as guides to creating your own functions or programs on the UR Robot using Polyscope.  Another easy way to get started is to copy and paste the code from the source code into a text editor and then save that file on a USB and load it into the robot using that method.
+### Using the URCap to Publish Events
+The easiest way you can publish an event to the Beacon system is to use the Beacon URCap.  When you do this the `Event Name` that you use in the program node will be available as a metric to use in dashboards.  This allows you to very easily add custom events to your Polyscope program without the need to know any URScript.  In this example we are adding the `Beacon Event` program node to an existing program to capture we have made a palleet of parts once the pallet is complete.  In our dashboard, `Made a Part` will be available as a metric, each time we submit an event with this method we will make 1 part in the system.
 
-Thefe are links in the examples below that will open the file in your web browser. To save the file you simply right click on the screen and choose `Save Page As` and that will allow you to directly save the content of the recipe to your computer or USB drive.  
+![img](./docs/images/beaconURCapExample.png)
 
-## Documentation
+Here is another example where we are using a Polyscope thread node to monitor the condition of an input and then send an event when that input is triggered.
+
+![img](docs/images/inputTriggeredURCap.png)
+
+### Using URScript to Publish Events
+
+One of the limitations of the URCap program node is you are limited on the data that can be sent with an event.  You are only able to send an `Event Name` and an optional `Event Message`.  The event name will automatically be converted to a metric key with a value of 1.  If you want to send more complex data you can use the URScript method to publish complex events.  We have provided several code recipes that you can use directly in your programs or modify them to do the exact function that you want.  If you come up with a recipe that you think would be useful to others you can contribute back to the community and make it available for others to use.
+
+The easiest way to get started using the code recipes is to simply use the recipes as guides to create your own functions or programs on the UR Robot using Polyscope.  Another easy way to get started is use the download links in the examples below that will open the file in your web browser. To save the file you simply right click on the screen and choose `Save Page As` or `Save As` (depends on your browser) and that will allow you to directly save the content of the recipe to your computer or USB drive.  
 
 
-## Using the URCap to Publish Events
+
+## Publish Event URScrtipt
+### Documentation
+| Parameter | Type | Required | Description |
+| --- | --- | ---| --- |
+| eventName | String | Required | This is the event name that will be published to Beacon.  You can have multiple events that are sent to the same name, see [Production Stoppage](#production-stoppage) for an example |
+| eventMessage | String | Optional | Message that you want to send when the event is published, this could be a message that is seen in a push notification for example, see [Notify When Output Goes High](#notify-when-output-goes-high) |
+| metrics | String \| Number | Optional | These are the values that will be availabe to chart.  To use Metrics you need to send both a `key` and a `value` as comma seperated fields, i.e., `..."Quantity Made", 1 ...` |
+
+
+### Example Usage
+
+```
+local eventName = "Waiting"
+local eventMessage = "Waiting for operator to clear the conveyor"
+local metric_1_Key = "timeWaiting"
+local metric_1_Value = 12.34
+local metric_2_Key = "Conveyor Line"
+local metric_2_Value = "2"
+
+beacon.publishEvent(eventName, eventMessage, metric_1_Key, metric_1_Value,  metric_2_Key, metric_2_Value)
+```
 
 ## Recipe Examples
 
 ### Made a Part
   This is a good recipe to use when you want to track part production over the course of the day.  This script has optional parameters for sending in the `Part Number`, `Cycle Time` and a custom message that you want tagged in the event.  If you do not provide those values the `Part Number` will be set to an empty string and the `Cycle Time` will be set to a value of 0.
 
+#### Documentation
+
+
+| Parameter | Type | Required | Description |
+| --- | --- | ---| --- |
+| quantityMade | Number|  Required | Number of parts made during the cycle |
+| cycleTime | Number | Optional | This is the cycle time it took the robot to make the part |
+| partNumber | String | Optional | Part number that is being reported |
+| msg | String | Optional | This message will be sent in the notification when the made a part event is sent |
+
+```
+def beacon_partMade(quantityMade, cycleTime = 0, partNumber = "", msg = ""):
+  beacon.publishEvent("Made a Part", msg, "Quantity Made", quantityMade, "Cycle Time", cycleTime, "Part Number", partNumber)
+end
+```
   #### Example Usage:
   ```
   beacon_partMade(1, 12.34, "PRT-00123", "Made part from machine 1234")
@@ -99,6 +144,27 @@ beacon_stoppage("Out of parts, please load more then press continue", "Parts hav
 
 This is a demo recipe that shows the power of notifications.  In this example the robot is monitoring a standard digital output on the robot and sending an event notification when the output goes high (turns on.  If a user is subscribed to this event than it is possible to get a push notification on a mobile device when this condition occurs.
 
+
+#### Documentation
+
+
+```
+thread notifyWhenOutputHigh():
+  while (True):
+    if (get_standard_digital_out(0)): #This could be any of the standard, configurable or tool outputs or inputs, just need to use correct function and port
+      beacon.publishEvent("Output Triggered", "Digital Output 0 went high", "Output Triggered", 1)
+      while (get_standard_digital_out(0)):
+        sync()
+      end
+    end
+    sync()
+  end
+end
+
+def beacon_monitorOutput():
+  run notifyWhenOutputHigh()
+end
+```
 #### Example Usage
 ```
 beacon_monitorOutput()
