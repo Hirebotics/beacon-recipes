@@ -1,0 +1,18 @@
+local stoppage_timer = 0
+local step_time = get_steptime()
+
+def beacon_stoppage(msg_start, msg_end = "Stoppage resolved, thank you for your help"):
+  local threadId = run stoppage_thrd()
+  beacon.publishEvent("Stoppage", msg_start)
+  popup(msg_start, "Work Stoppage", True, False, True)
+  kill threadId
+  beacon.publishEvent("Stoppage", msg_end, "Time Stopped", stoppage_timer)
+end
+
+thread stoppage_thrd():
+  stoppage_timer = 0
+  while (True):
+    stoppage_timer = stoppage_timer + step_time
+    sync()
+  end
+end

@@ -1,0 +1,3 @@
+def beacon_partMade(quantityMade, cycleTime = 0, partNumber = "", msg = ""):
+  beacon.publishEvent("Made a Part", msg, "Quantity Made", quantityMade, "Cycle Time", cycleTime, "Part Number", partNumber)
+end
