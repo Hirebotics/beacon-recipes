@@ -77,7 +77,7 @@ beacon.publishEvent(eventName, eventMessage, metric_1_Key, metric_1_Value,  metr
 ### Made a Part
   This is a good recipe to use when you want to track part production over the course of the day.  This script has optional parameters for sending in the `Part Number`, `Cycle Time` and a custom message that you want tagged in the event.  If you do not provide those values the `Part Number` will be set to an empty string and the `Cycle Time` will be set to a value of 0.
 
-  [Download](https://raw.githubusercontent.com/Hirebotics/beacon-recipes/readme/src/madePart.script)
+  [Download](https://raw.githubusercontent.com/mbush92/beacon-recipes/main/src/madePart.script)
 
 #### Documentation
 
@@ -106,7 +106,7 @@ end
 
 This is a recipe to use when you want to monitor work stoppages.  It will send a notification and also pop onto the screen the information for the operator on what needs to be addressed.  It also takes an optional second message that will be displayed once the operator acknowledges the situation.  The function automatically logs the amount of time it takes from when the stoppage occurs until the operator acknowledges the situation.
 
-[Download](https://raw.githubusercontent.com/Hirebotics/beacon-recipes/readme/src/stoppage.script)
+[Download](https://raw.githubusercontent.com/Hirebotics/beacon-recipes/main/src/stoppage.script)
 
 #### Documentation
 
@@ -150,7 +150,7 @@ beacon_stoppage("Out of parts, please load more then press continue", "Parts hav
 
 This is a demo recipe that shows the power of notifications.  In this example the robot is monitoring a standard digital output on the robot and sending an event notification when the output goes high (turns on.  If a user is subscribed to this event than it is possible to get a push notification on a mobile device when this condition occurs.
 
-[Download](https://raw.githubusercontent.com/mbush92/beacon-recipes/readme/src/monitorOutput.script)
+[Download](https://raw.githubusercontent.com/mbush92/beacon-recipes/main/src/monitorOutput.script)
 
 #### Documentation
 
