@@ -60,7 +60,7 @@ The easiest way to get started using the code recipes is to simply use the recip
 ```
 local eventName = "Waiting"
 local eventMessage = "Waiting for operator to clear the conveyor"
-local metric_1_Key = "timeWaiting"
+local metric_1_Key = "Time Spent Waiting"
 local metric_1_Value = 12.34
 local metric_2_Key = "Conveyor Line"
 local metric_2_Value = "2"
