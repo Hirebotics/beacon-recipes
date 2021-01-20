@@ -7,9 +7,12 @@
 
 - [Overview](#overview)
 - [Quick Start](#quick-start)
-- [Documentation](#documentation)
+- [Publish Event with URScript](#publish-event-with-urscript)
+- [Recipe Examples](#recipe-examples)
     - [Made a Part](#made-a-part)
     - [Production Stoppage](#production-stoppage)
+    - [Notify When Output Triggered](#notify-when-output-triggered)
+- [Charting in Beacon](#charting-in-beacon)
 
 ## Overview
 
@@ -46,12 +49,12 @@ The easiest way to get started using the code recipes is to simply use the recip
 
 
 
-## Publish Event URScrtipt
+## Publish Event with URScript
 ### Documentation
 | Parameter | Type | Required | Description |
 | --- | --- | ---| --- |
 | eventName | String | Required | This is the event name that will be published to Beacon.  You can have multiple events that are sent to the same name, see [Production Stoppage](#production-stoppage) for an example |
-| eventMessage | String | Optional | Message that you want to send when the event is published, this could be a message that is seen in a push notification for example, see [Notify When Output Goes High](#notify-when-output-goes-high) |
+| eventMessage | String | Optional | Message that you want to send when the event is published, this could be a message that is seen in a push notification for example, see [Notify When Output Goes High](#notify-when-output-triggered) |
 | metrics | String \| Number | Optional | These are the values that will be availabe to chart.  To use Metrics you need to send both a `key` and a `value` as comma seperated fields, i.e., `..."Quantity Made", 1 ...` |
 
 
@@ -140,7 +143,7 @@ beacon_stoppage("Out of parts, please load more then press continue", "Parts hav
 
 ![img](./docs/images/workStoppagePolyscope.png)
 
-### Notify When Output Goes High
+### Notify When Output Triggered
 
 This is a demo recipe that shows the power of notifications.  In this example the robot is monitoring a standard digital output on the robot and sending an event notification when the output goes high (turns on.  If a user is subscribed to this event than it is possible to get a push notification on a mobile device when this condition occurs.
 
@@ -178,7 +181,13 @@ beacon_monitorOutput()
 
 ## Charting in Beacon
 
+### Results of Charting
+
 ![img](./docs/images/BeaconMetrics.png)
+
+### Configuring a Chart
+
+![img](./docs/images/configureChart.png)
 
 ## Advanced Repo Functionality
 
